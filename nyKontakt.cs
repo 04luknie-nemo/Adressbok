@@ -1,32 +1,38 @@
-using System.Security.Cryptography.X509Certificates;
-
-public class Entity
+public class Contact : Entity
 {
-    public int Id
+    private string firstName;
+    private string nummer;
+    public string FirstName
     {
         get
         {
-            int idSlumpare = Random.Shared.Next(1, 1000000);
-            return idSlumpare;
+            return firstName;
+        }
+        set
+        {
+            firstName = value;
+            UpdateAt = DateTime.Now;
         }
     }
-    public DateTime CreatedAt;
-
-    public Entity(int id, int idSlumpare)
-    {
-        id = idSlumpare;
-        CreatedAt = DateTime.Now;
-    }
-}
-public class nyKontakt : Entity
-{
-    public string FirstName { get; set; }
     public string LastName { get; set; }
-    public string Nummer { get; set; }
+    public string Nummer
+    {
+        get
+        {
+            return nummer;
+        }
+        set
+        {
+            nummer = value;
+            UpdateAt = DateTime.Now;
+        }
+    }
 
     public bool isFavorite { get; set; }
 
-    public nyKontakt(int id, int idSlumpare, string firstName, string lastName, string nummer) : base(id, idSlumpare)
+    public DateTime UpdateAt { get; private set; }
+
+    public Contact(string firstName, string lastName, string nummer)
     {
         FirstName = firstName;
         LastName = lastName;
@@ -39,6 +45,27 @@ public class nyKontakt : Entity
         {
             return $"{FirstName} {LastName}";
         }
+    }
+}
+public class Entity
+{
+    public int Id
+    {
+        get
+        {
+            int idSlumpare = Random.Shared.Next(1, 1000000);
+            return idSlumpare;
+        }
+    }
+    public DateTime CreatedAt;
+
+    public Entity()
+    {
+        CreatedAt = DateTime.Now;
+    }
+    public void SetUpdatedAt(DateTime Updater)
+    {
+        Updater = DateTime.Now;
     }
 }
 
