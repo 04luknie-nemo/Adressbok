@@ -72,14 +72,8 @@
 
         static void ListaKontakter(List<Contact> nyKontakt)
         {
-            Console.WriteLine("\nKontakter: ");
-            Console.WriteLine("-----------------------------------");
+            Utskrift(nyKontakt);
 
-            for (int i = 0; i < nyKontakt.Count; i++)
-            {
-                Console.WriteLine($"({i + 1}) ID: {nyKontakt[i].Id} \n    {nyKontakt[i].FullName} - {nyKontakt[i].Nummer} \n    Favorit - {nyKontakt[i].isFavorite} \n    Skapad - {nyKontakt[i].CreatedAt} \n    Uppdaterad - {nyKontakt[i].UpdateAt}");
-                Console.WriteLine("-----------------------------------");
-            }
             UppdateraNummer(nyKontakt);
             Console.ReadLine();
 
@@ -171,6 +165,18 @@
             else
             {
                 Console.WriteLine("Är det så svårt att svara ja eller nej?");
+            }
+        }
+
+        static void Utskrift(List<Contact> nyKontakt)
+        {
+            Console.WriteLine("\nKontakter: ");
+            Console.WriteLine("-----------------------------------");
+
+            for (int i = 0; i < nyKontakt.Count; i++)
+            {
+                Console.WriteLine($"({i + 1}) ID: {nyKontakt[i].Id} \n    {nyKontakt[i].FullName} - {nyKontakt[i].Nummer} \n    Favorit - {nyKontakt[i].isFavorite} \n    Skapad - {nyKontakt[i].CreatedAt} \n    Uppdaterad - {nyKontakt[i].UpdateAt}");
+                Console.WriteLine("-----------------------------------");
             }
         }
     }

@@ -1,7 +1,12 @@
+using System.Reflection.Metadata;
+
 public class Contact : Entity
 {
     private string firstName;
     private string nummer;
+    public bool isFavorite { get; set; }
+    public string LastName { get; set; }
+
     public string FirstName
     {
         get
@@ -11,10 +16,8 @@ public class Contact : Entity
         set
         {
             firstName = value;
-            UpdateAt = DateTime.Now;
         }
     }
-    public string LastName { get; set; }
     public string Nummer
     {
         get
@@ -24,13 +27,9 @@ public class Contact : Entity
         set
         {
             nummer = value;
-            UpdateAt = DateTime.Now;
+            SetUpdatedAt();
         }
     }
-
-    public bool isFavorite { get; set; }
-
-    public DateTime UpdateAt { get; private set; }
 
     public Contact(string firstName, string lastName, string nummer)
     {
@@ -63,72 +62,12 @@ public class Entity
     {
         CreatedAt = DateTime.Now;
     }
-    public void SetUpdatedAt(DateTime Updater)
+
+    public DateTime UpdateAt { get; private set; }
+
+    public void SetUpdatedAt()
     {
-        Updater = DateTime.Now;
+        UpdateAt = DateTime.Now;
     }
 }
 
-// public string Namn { get; set; }
-// public string Nummer { get; set; }
-
-// // Konstruktor
-// public nyKontakt(string namn, string nummer)
-// {
-//     Namn = namn;
-//     Nummer = nummer;
-// }
-
-
-// Cred till macfra
-
-// Sättare
-
-// public void sättNamn(string namn) => this.namn = namn;
-
-// public void sättNummer(string nummer) => this.nummer = nummer;
-
-
-// // Hämtare
-
-// public string hämtaNamn() => this.namn;
-
-// public string hämtaNummer() => this.nummer;
-
-// public string Namn
-// {
-//     get
-//     {
-//         return namn;
-//     }
-//     set
-//     {
-//         if (!string.IsNullOrWhiteSpace(value))
-//         {
-//             namn = value;
-//         }
-//         else
-//         {
-//             namn = "Inget Namn";
-//         }
-//     }
-// }
-
-// public string Nummer
-// {
-//     get
-//     {
-//         return nummer;
-//     }
-//     set
-//     {
-//         if (!string.IsNullOrWhiteSpace(value))
-//         {
-//             nummer = value;
-//         }
-//         else
-//         {
-//             nummer = "Inget Nummer";
-//         }
-//     }
-// }
