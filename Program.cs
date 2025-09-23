@@ -9,7 +9,7 @@
         while (true)
         {
             Console.WriteLine("\nAdressBok");
-            Console.WriteLine("--------------");
+            Console.WriteLine("-----------------------------------");
             Console.WriteLine("(1) Lägg till kontakt");
             Console.WriteLine("(2) Lista kontakter");
             Console.WriteLine("(3) Sök kontakt");
@@ -43,18 +43,20 @@
 
         static void LäggTillKontakt(List<nyKontakt> nyKontakt)
         {
-            Console.WriteLine("\nNamn: \n");
-            string namnInput = Console.ReadLine();
-            Console.WriteLine("\nTelefonnummer\n");
+            Console.WriteLine("\nFörnamn: ");
+            string firstNameInput = Console.ReadLine();
+
+            Console.WriteLine("\nEfternamn: ");
+            string lastNameInput = Console.ReadLine();
+
+            Console.WriteLine("\nTelefonnummer: ");
             string nummerInput = Console.ReadLine();
 
-            nyKontakt kontakt = new nyKontakt();
+            nyKontakt kontakt = new nyKontakt(0, 0, firstNameInput, lastNameInput, nummerInput);
 
-            kontakt.Namn = namnInput;
-            kontakt.Nummer = nummerInput;
             nyKontakt.Add(kontakt);
 
-            Console.WriteLine("Vill du göra kontaken till en favorit? ja/nej");
+            Console.WriteLine("\nVill du göra kontaken till en favorit? ja/nej");
             string favorit = Console.ReadLine();
             if (favorit == "ja")
             {
@@ -71,44 +73,16 @@
         static void ListaKontakter(List<nyKontakt> nyKontakt)
         {
             Console.WriteLine("\nKontakter: ");
-            Console.WriteLine("--------------");
+            Console.WriteLine("-----------------------------------");
 
             for (int i = 0; i < nyKontakt.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. {nyKontakt[i].Namn} - {nyKontakt[i].Nummer} \nFavorit - {nyKontakt[i].isFavorite}");
-
-                Console.WriteLine("--------------");
-                Console.WriteLine("Vill du uppdatera ett telefonnummer? ja/nej");
-                string uppdateraNummer = Console.ReadLine();
-
-                if (uppdateraNummer == "ja")
-                {
-                    Console.WriteLine("Skriv indexet som hör till nummret: ");
-                    var uppdateraIndex = Console.ReadLine();
-
-                    Console.WriteLine("Skriv det nya nummret: ");
-                    string nyttNummer = Console.ReadLine();
-
-                    if (int.TryParse(uppdateraIndex, out int index) && index > 0 && index <= nyKontakt.Count)
-                    {
-                        nyKontakt[index - 1].Nummer = nyttNummer;
-                        Console.WriteLine("Telefonnumret har uppdaterats");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Ogiltigt index");
-                    }
-                }
-                else if (uppdateraNummer == "nej")
-                {
-                    Console.WriteLine("Okej det är lugnt");
-                    continue;
-                }
-                else
-                {
-                    Console.WriteLine("Är det så svårt att svara ja eller nej?");
-                }
+                Console.WriteLine($"({i + 1}) ID: {nyKontakt[i].Id} \n    {nyKontakt[i].FullName} - {nyKontakt[i].Nummer} \n    Favorit - {nyKontakt[i].isFavorite} \n    Skapad - {nyKontakt[i].CreatedAt} ");
+                Console.WriteLine("-----------------------------------");
             }
+            UppdateraNummer(nyKontakt);
+            Console.ReadLine();
+
             if (nyKontakt.Count == 0)
             {
                 Console.WriteLine("\nIngen kontakt finns ännu :(");
@@ -123,16 +97,16 @@
             bool Found = false;
             for (int i = 0; i < nyKontakt.Count; i++)
             {
-                if (nyKontakt[i].Namn == sökOrd)
+                if (nyKontakt[i].FirstName == sökOrd || nyKontakt[i].LastName == sökOrd)
                 {
-                    Console.WriteLine("-------------------------------");
+                    Console.WriteLine("-----------------------------------");
                     Console.WriteLine("Kontakten finns med namnet: ");
-                    Console.Write($"\n{i + 1}. {nyKontakt[i].Namn}");
+                    Console.Write($"\n{i + 1}. {nyKontakt[i].FullName}");
                     Found = true;
                 }
                 else if (nyKontakt[i].Nummer == sökOrd)
                 {
-                    Console.WriteLine("-------------------------------");
+                    Console.WriteLine("-----------------------------------");
                     Console.WriteLine("Kontakten finns med nummret: ");
                     Console.WriteLine($"\n {i + 1}. {nyKontakt[i].Nummer}");
                     Found = true;
@@ -146,12 +120,12 @@
 
         static void TaBortKontakt(List<nyKontakt> kontakter, List<string> raderadeKontakter)
         {
-            Console.WriteLine("\nSkriv in namn på kontakten som ska tas bort: \n");
+            Console.WriteLine("\nSkriv in hela namnet på kontakten som ska tas bort: \n");
             string raderaNamn = Console.ReadLine();
 
             for (int i = 0; i < kontakter.Count; i++)
             {
-                if (kontakter[i].Namn == raderaNamn)
+                if (kontakter[i].FullName == raderaNamn)
                 {
                     kontakter.RemoveAt(i);
 
@@ -161,6 +135,40 @@
                 {
                     Console.WriteLine("kontakten finns inte");
                 }
+            }
+        }
+
+        static void UppdateraNummer(List<nyKontakt> nyKontakt)
+        {
+            Console.WriteLine("Vill du uppdatera ett telefonnummer? ja/nej");
+            string uppdateraNummer = Console.ReadLine();
+
+            if (uppdateraNummer == "ja")
+            {
+                Console.WriteLine("Skriv indexet som hör till nummret: ");
+                var uppdateraIndex = Console.ReadLine();
+
+                Console.WriteLine("Skriv det nya nummret: ");
+                string nyttNummer = Console.ReadLine();
+
+                if (int.TryParse(uppdateraIndex, out int index) && index > 0 && index <= nyKontakt.Count)
+                {
+                    nyKontakt[index - 1].Nummer = nyttNummer;
+                    Console.WriteLine("Telefonnumret har uppdaterats");
+                }
+                else
+                {
+                    Console.WriteLine("Ogiltigt index");
+                }
+            }
+            else if (uppdateraNummer == "nej")
+            {
+                Console.WriteLine("Okej det är lugnt");
+            }
+
+            else
+            {
+                Console.WriteLine("Är det så svårt att svara ja eller nej?");
             }
         }
     }
