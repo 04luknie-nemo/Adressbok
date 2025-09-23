@@ -4,7 +4,7 @@
 
     static void Main()
     {
-        List<nyKontakt> kontakter = new List<nyKontakt>();
+        List<Contact> kontakter = new List<Contact>();
 
         while (true)
         {
@@ -41,7 +41,7 @@
             }
         }
 
-        static void LäggTillKontakt(List<nyKontakt> nyKontakt)
+        static void LäggTillKontakt(List<Contact> nyKontakt)
         {
             Console.WriteLine("\nFörnamn: ");
             string firstNameInput = Console.ReadLine();
@@ -52,7 +52,7 @@
             Console.WriteLine("\nTelefonnummer: ");
             string nummerInput = Console.ReadLine();
 
-            nyKontakt kontakt = new nyKontakt(0, 0, firstNameInput, lastNameInput, nummerInput);
+            Contact kontakt = new Contact(firstNameInput, lastNameInput, nummerInput);
 
             nyKontakt.Add(kontakt);
 
@@ -70,14 +70,14 @@
             }
         }
 
-        static void ListaKontakter(List<nyKontakt> nyKontakt)
+        static void ListaKontakter(List<Contact> nyKontakt)
         {
             Console.WriteLine("\nKontakter: ");
             Console.WriteLine("-----------------------------------");
 
             for (int i = 0; i < nyKontakt.Count; i++)
             {
-                Console.WriteLine($"({i + 1}) ID: {nyKontakt[i].Id} \n    {nyKontakt[i].FullName} - {nyKontakt[i].Nummer} \n    Favorit - {nyKontakt[i].isFavorite} \n    Skapad - {nyKontakt[i].CreatedAt} ");
+                Console.WriteLine($"({i + 1}) ID: {nyKontakt[i].Id} \n    {nyKontakt[i].FullName} - {nyKontakt[i].Nummer} \n    Favorit - {nyKontakt[i].isFavorite} \n    Skapad - {nyKontakt[i].CreatedAt} \n    Uppdaterad - {nyKontakt[i].UpdateAt}");
                 Console.WriteLine("-----------------------------------");
             }
             UppdateraNummer(nyKontakt);
@@ -89,7 +89,7 @@
             }
         }
 
-        static void SökKontakt(List<nyKontakt> nyKontakt)
+        static void SökKontakt(List<Contact> nyKontakt)
         {
             Console.WriteLine("\nSök efter Namn eller Nummer: ");
             string sökOrd = Console.ReadLine();
@@ -118,7 +118,7 @@
             }
         }
 
-        static void TaBortKontakt(List<nyKontakt> kontakter, List<string> raderadeKontakter)
+        static void TaBortKontakt(List<Contact> kontakter, List<string> raderadeKontakter)
         {
             Console.WriteLine("\nSkriv in hela namnet på kontakten som ska tas bort: \n");
             string raderaNamn = Console.ReadLine();
@@ -138,7 +138,7 @@
             }
         }
 
-        static void UppdateraNummer(List<nyKontakt> nyKontakt)
+        static void UppdateraNummer(List<Contact> nyKontakt)
         {
             Console.WriteLine("Vill du uppdatera ett telefonnummer? ja/nej");
             string uppdateraNummer = Console.ReadLine();
@@ -160,6 +160,8 @@
                 {
                     Console.WriteLine("Ogiltigt index");
                 }
+
+
             }
             else if (uppdateraNummer == "nej")
             {
