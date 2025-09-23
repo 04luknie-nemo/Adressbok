@@ -1,0 +1,75 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code
+.vscode/
+
+# NuGet
+*.nupkg
+# Paket restore files
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Build Results
+[Dd]ebug/
+[Rr]elease/
+build/
+
+# Others
+*.log
+*.vspscc
+*.vssscc
+*.dbmdl
+*.pdb
+*.cache
+*.zip
+*.vs/
+
+# Rider
+.idea/
+*.sln.iml
+
+# Test Results
+TestResults/
+
+# Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+
+# DotCover
+*.dotCover
+
+# NCrunch
+*.ncrunch*
+_nCrunch_*/
+
+# StyleCop
+StyleCopReport.xml
+
+# TeamCity
+_TeamCity*
+
+# DotTrace
+*.dotTrace
+
+# Coverage
+coverage/
+
+# SonarQube
+.sonar/
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Python virtualenv
+venv/

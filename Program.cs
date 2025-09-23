@@ -1,0 +1,167 @@
+﻿class Program()
+{
+    static List<string> raderadeKontakter = [];
+
+    static void Main()
+    {
+        List<nyKontakt> kontakter = new List<nyKontakt>();
+
+        while (true)
+        {
+            Console.WriteLine("\nAdressBok");
+            Console.WriteLine("--------------");
+            Console.WriteLine("(1) Lägg till kontakt");
+            Console.WriteLine("(2) Lista kontakter");
+            Console.WriteLine("(3) Sök kontakt");
+            Console.WriteLine("(4) Ta bort kontakt");
+            Console.WriteLine("(5) Avsluta");
+
+            Console.WriteLine("\nGör ditt val\n");
+            string Val = Console.ReadLine();
+
+            if (Val == "1")
+            {
+                LäggTillKontakt(kontakter);
+            }
+            else if (Val == "2")
+            {
+                ListaKontakter(kontakter);
+            }
+            else if (Val == "3")
+            {
+                SökKontakt(kontakter);
+            }
+            else if (Val == "4")
+            {
+                TaBortKontakt(kontakter, raderadeKontakter);
+            }
+            else if (Val == "5")
+            {
+                Environment.Exit(0);
+            }
+        }
+
+        static void LäggTillKontakt(List<nyKontakt> nyKontakt)
+        {
+            Console.WriteLine("\nNamn: \n");
+            string namnInput = Console.ReadLine();
+            Console.WriteLine("\nTelefonnummer\n");
+            string nummerInput = Console.ReadLine();
+
+            nyKontakt kontakt = new nyKontakt();
+
+            kontakt.Namn = namnInput;
+            kontakt.Nummer = nummerInput;
+            nyKontakt.Add(kontakt);
+
+            Console.WriteLine("Vill du göra kontaken till en favorit? ja/nej");
+            string favorit = Console.ReadLine();
+            if (favorit == "ja")
+            {
+                kontakt.isFavorite = true;
+
+                Console.WriteLine("\nKontakten lades till!\n");
+            }
+            else
+            {
+                Console.WriteLine("\nKontakten lades till!\n");
+            }
+        }
+
+        static void ListaKontakter(List<nyKontakt> nyKontakt)
+        {
+            Console.WriteLine("\nKontakter: ");
+            Console.WriteLine("--------------");
+
+            for (int i = 0; i < nyKontakt.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {nyKontakt[i].Namn} - {nyKontakt[i].Nummer} \nFavorit - {nyKontakt[i].isFavorite}");
+
+                Console.WriteLine("--------------");
+                Console.WriteLine("Vill du uppdatera ett telefonnummer? ja/nej");
+                string uppdateraNummer = Console.ReadLine();
+
+                if (uppdateraNummer == "ja")
+                {
+                    Console.WriteLine("Skriv indexet som hör till nummret: ");
+                    var uppdateraIndex = Console.ReadLine();
+
+                    Console.WriteLine("Skriv det nya nummret: ");
+                    string nyttNummer = Console.ReadLine();
+
+                    if (int.TryParse(uppdateraIndex, out int index) && index > 0 && index <= nyKontakt.Count)
+                    {
+                        nyKontakt[index - 1].Nummer = nyttNummer;
+                        Console.WriteLine("Telefonnumret har uppdaterats");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ogiltigt index");
+                    }
+                }
+                else if (uppdateraNummer == "nej")
+                {
+                    Console.WriteLine("Okej det är lugnt");
+                    continue;
+                }
+                else
+                {
+                    Console.WriteLine("Är det så svårt att svara ja eller nej?");
+                }
+            }
+            if (nyKontakt.Count == 0)
+            {
+                Console.WriteLine("\nIngen kontakt finns ännu :(");
+            }
+        }
+
+        static void SökKontakt(List<nyKontakt> nyKontakt)
+        {
+            Console.WriteLine("\nSök efter Namn eller Nummer: ");
+            string sökOrd = Console.ReadLine();
+
+            bool Found = false;
+            for (int i = 0; i < nyKontakt.Count; i++)
+            {
+                if (nyKontakt[i].Namn == sökOrd)
+                {
+                    Console.WriteLine("-------------------------------");
+                    Console.WriteLine("Kontakten finns med namnet: ");
+                    Console.Write($"\n{i + 1}. {nyKontakt[i].Namn}");
+                    Found = true;
+                }
+                else if (nyKontakt[i].Nummer == sökOrd)
+                {
+                    Console.WriteLine("-------------------------------");
+                    Console.WriteLine("Kontakten finns med nummret: ");
+                    Console.WriteLine($"\n {i + 1}. {nyKontakt[i].Nummer}");
+                    Found = true;
+                }
+            }
+            if (!Found)
+            {
+                Console.WriteLine("\nKontakten finns inte");
+            }
+        }
+
+        static void TaBortKontakt(List<nyKontakt> kontakter, List<string> raderadeKontakter)
+        {
+            Console.WriteLine("\nSkriv in namn på kontakten som ska tas bort: \n");
+            string raderaNamn = Console.ReadLine();
+
+            for (int i = 0; i < kontakter.Count; i++)
+            {
+                if (kontakter[i].Namn == raderaNamn)
+                {
+                    kontakter.RemoveAt(i);
+
+                    Console.WriteLine("Kontakten togs bort");
+                }
+                else
+                {
+                    Console.WriteLine("kontakten finns inte");
+                }
+            }
+        }
+    }
+}
