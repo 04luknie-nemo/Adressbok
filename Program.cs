@@ -1,4 +1,6 @@
-﻿class Program()
+﻿using System.Runtime.Intrinsics.Arm;
+
+class Program()
 {
     static List<string> raderadeKontakter = [];
 
@@ -77,6 +79,8 @@
             UppdateraNamn(nyKontakt);
 
             UppdateraNummer(nyKontakt);
+
+            TaBortFavorit(nyKontakt);
 
             Console.ReadLine();
 
@@ -162,7 +166,7 @@
             }
             else if (uppdateraNummerSvar == "nej")
             {
-                Console.WriteLine("Okej det är lugnt");
+                Console.WriteLine("Okej :)");
             }
 
             else
@@ -235,6 +239,32 @@
             {
                 Console.WriteLine($"({i + 1}) ID: {nyKontakt[i].Id} \n    {nyKontakt[i].FullName} - {nyKontakt[i].Nummer} \n    Favorit - {nyKontakt[i].isFavorite} \n    Skapad - {nyKontakt[i].CreatedAt} \n    Uppdaterad - {nyKontakt[i].UpdateAt}");
                 Console.WriteLine("-----------------------------------");
+            }
+        }
+
+        static void TaBortFavorit(List<Contact> nyKontakt)
+        {
+            Console.WriteLine("Vill du ta bort en favorit? ja/nej");
+            string taBortFavo = Console.ReadLine();
+
+            if (taBortFavo == "ja")
+            {
+                Console.WriteLine("Ange index till kontakten");
+                var taBortFavoIndex = Console.ReadLine();
+
+                if (int.TryParse(taBortFavoIndex, out int index) && index > 0 && index <= nyKontakt.Count)
+                {
+                    nyKontakt[index - 1].isFavorite = false;
+                    Console.WriteLine("Favoriten togs bort");
+                }
+            }
+            else if (taBortFavo == "nej")
+            {
+                Console.WriteLine("Okej :)");
+            }
+            else
+            {
+                Console.WriteLine("Är det så svårt att svara ja eller nej?");
             }
         }
     }
