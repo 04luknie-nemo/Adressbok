@@ -1,23 +1,20 @@
 namespace Adressbok.Logic;
 
-public class Contact : Entity
+class Contact : Entity
 {
     private string firstName;
     private string lastName;
     private string nummer;
-    public bool isFavorite { get; set; }
+    public bool IsFavorite { get; set; }
 
     public string FirstName
     {
-        get
-        {
-            return firstName;
-        }
+        get { return firstName; }
+
         set
         {
             firstName = value;
             SetUpdatedAt();
-
         }
     }
     public string LastName
@@ -52,35 +49,15 @@ public class Contact : Entity
             return $"{FirstName} {LastName}";
         }
     }
-    public Contact(string firstName, string lastName, string nummer)
+    public Contact(string firstName, string lastName, string nummer, string adress)
     {
         FirstName = firstName;
         LastName = lastName;
         Nummer = nummer;
     }
-}
-public class Entity
-{
-    public int Id
-    {
-        get
-        {
-            int idSlumpare = Random.Shared.Next(1, 1000000);
-            return idSlumpare;
-        }
-    }
-    public DateTime CreatedAt;
 
-    public Entity()
+    public override string ToString()
     {
-        CreatedAt = DateTime.Now;
-    }
-
-    public DateTime UpdateAt { get; private set; }
-
-    public void SetUpdatedAt()
-    {
-        UpdateAt = DateTime.Now;
+        return $"ID: {Id} \nNamn: {FullName} \nTelefonnummer: {Nummer} \nSkapad: {CreatedAt} \nUppdaterad: {UpdateAt} \nFavorit: {IsFavorite}";
     }
 }
-
