@@ -1,6 +1,6 @@
 using Adressbok.Logic;
 
-class Adress()
+class Adress : Entity
 {
     private string adress;
 
@@ -13,6 +13,7 @@ class Adress()
         set
         {
             adress = value;
+            SetUpdatedAt();
         }
     }
 }

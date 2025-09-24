@@ -1,9 +1,8 @@
-﻿using System.Runtime.Intrinsics.Arm;
+﻿using System;
 using Adressbok.Logic;
 class Program()
 {
     static List<string> raderadeKontakter = [];
-
     static void Main()
     {
         List<Contact> kontakter = new List<Contact>();
@@ -56,6 +55,10 @@ class Program()
 
             Console.WriteLine("Lägg till adress");
             string adress = Console.ReadLine();
+
+            Adress minAdress = new Adress(adress);
+            minAdress.AdressTillPerson = "";
+
 
             Contact kontakt = new Contact(firstNameInput, lastNameInput, nummerInput, adress);
 

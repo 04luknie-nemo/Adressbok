@@ -1,6 +1,6 @@
 namespace Adressbok.Logic;
 
-class Entity : Adress
+class Entity
 {
     public int Id { get; }
     public DateTime CreatedAt { get; } = DateTime.Now;

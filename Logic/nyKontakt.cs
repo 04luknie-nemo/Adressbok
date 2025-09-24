@@ -58,6 +58,6 @@ class Contact : Entity
 
     public override string ToString()
     {
-        return $"ID: {Id} \nNamn: {FullName} \nTelefonnummer: {Nummer} \nSkapad: {CreatedAt} \nUppdaterad: {UpdateAt} \nFavorit: {IsFavorite}";
+        return $"ID: {Id} \nNamn: {FullName} \nTelefonnummer: {Nummer} \nSkapad: {CreatedAt} \nUppdaterad: {UpdateAt} \nFavorit: {IsFavorite} \nAdress: {AdressTillPerson}";
     }
 }
