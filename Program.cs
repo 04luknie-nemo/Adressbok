@@ -74,7 +74,10 @@
         {
             Utskrift(nyKontakt);
 
+            UppdateraNamn(nyKontakt);
+
             UppdateraNummer(nyKontakt);
+
             Console.ReadLine();
 
             if (nyKontakt.Count == 0)
@@ -135,17 +138,17 @@
         static void UppdateraNummer(List<Contact> nyKontakt)
         {
             Console.WriteLine("Vill du uppdatera ett telefonnummer? ja/nej");
-            string uppdateraNummer = Console.ReadLine();
+            string uppdateraNummerSvar = Console.ReadLine();
 
-            if (uppdateraNummer == "ja")
+            if (uppdateraNummerSvar == "ja")
             {
                 Console.WriteLine("Skriv indexet som hör till nummret: ");
-                var uppdateraIndex = Console.ReadLine();
+                var uppdateraNummerIndex = Console.ReadLine();
 
                 Console.WriteLine("Skriv det nya nummret: ");
                 string nyttNummer = Console.ReadLine();
 
-                if (int.TryParse(uppdateraIndex, out int index) && index > 0 && index <= nyKontakt.Count)
+                if (int.TryParse(uppdateraNummerIndex, out int index) && index > 0 && index <= nyKontakt.Count)
                 {
                     nyKontakt[index - 1].Nummer = nyttNummer;
                     Console.WriteLine("Telefonnumret har uppdaterats");
@@ -157,7 +160,7 @@
 
 
             }
-            else if (uppdateraNummer == "nej")
+            else if (uppdateraNummerSvar == "nej")
             {
                 Console.WriteLine("Okej det är lugnt");
             }
@@ -166,6 +169,61 @@
             {
                 Console.WriteLine("Är det så svårt att svara ja eller nej?");
             }
+        }
+
+        static void UppdateraNamn(List<Contact> nyKontakt)
+        {
+            Console.WriteLine("Vill du uppdatera ett namn? ja/nej");
+            string uppdateraNamnSvar = Console.ReadLine();
+
+            if (uppdateraNamnSvar == "ja")
+            {
+                Console.WriteLine("(F)örnamn eller (E)fternamn?");
+                string FirstOrLastName = Console.ReadLine();
+
+                if (FirstOrLastName == "f")
+                {
+                    Console.WriteLine("Skriv indexet som hör till namnet");
+                    var uppdateraNamnIndex = Console.ReadLine();
+
+                    Console.WriteLine("Skriv det nya Förnamnet");
+                    string nyttFörNamn = Console.ReadLine();
+
+                    if (int.TryParse(uppdateraNamnIndex, out int index) && index > 0 && index <= nyKontakt.Count)
+                    {
+                        nyKontakt[index - 1].FirstName = nyttFörNamn;
+                        Console.WriteLine("Förnamnet har uppdaterats!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ogiltigt index");
+                    }
+                }
+                else if (FirstOrLastName == "e")
+                {
+                    Console.WriteLine("Skriv indexet som hör till namnet");
+                    var uppdateraNamnIndex = Console.ReadLine();
+
+                    Console.WriteLine("Skriv det nya Efternamnet");
+                    string nyttEfterNamn = Console.ReadLine();
+
+                    if (int.TryParse(uppdateraNamnIndex, out int index) && index > 0 && index <= nyKontakt.Count)
+                    {
+                        nyKontakt[index - 1].LastName = nyttEfterNamn;
+                        Console.WriteLine("Förnamnet har uppdaterats!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ogiltigt index");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Korrekt svar tack");
+                }
+
+            }
+
         }
 
         static void Utskrift(List<Contact> nyKontakt)

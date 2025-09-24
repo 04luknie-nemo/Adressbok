@@ -1,11 +1,6 @@
-using System.Reflection.Metadata;
-
 public class Contact : Entity
 {
     private string firstName;
-    private string nummer;
-    public bool isFavorite { get; set; }
-    public string LastName { get; set; }
 
     public string FirstName
     {
@@ -16,8 +11,13 @@ public class Contact : Entity
         set
         {
             firstName = value;
+            SetUpdatedAt();
+
         }
     }
+    public string LastName { get; set; }
+    private string nummer;
+
     public string Nummer
     {
         get
@@ -30,20 +30,20 @@ public class Contact : Entity
             SetUpdatedAt();
         }
     }
-
-    public Contact(string firstName, string lastName, string nummer)
-    {
-        FirstName = firstName;
-        LastName = lastName;
-        Nummer = nummer;
-    }
-
     public string FullName
     {
         get
         {
             return $"{FirstName} {LastName}";
         }
+    }
+    public bool isFavorite { get; set; }
+
+    public Contact(string firstName, string lastName, string nummer)
+    {
+        FirstName = firstName;
+        LastName = lastName;
+        Nummer = nummer;
     }
 }
 public class Entity
