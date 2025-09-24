@@ -1,11 +1,11 @@
 ﻿using Adressbok.Logic;
 class Program()
 {
-    static List<string> raderadeKontakter = [];
+    static List<string> deletedContacts = [];
     static void Main()
     {
-        List<Contact> kontakter = new List<Contact>();
-    
+        List<Contact> Contacts = new List<Contact>();
+
         while (true)
         {
             Console.WriteLine("\nAdressBok");
@@ -21,27 +21,28 @@ class Program()
 
             if (Val == "1")
             {
-                LäggTillKontakt(kontakter);
+                AddContact(Contacts);
             }
             else if (Val == "2")
             {
-                ListaKontakter(kontakter);
+                RemoveContact(Contacts, deletedContacts);
             }
             else if (Val == "3")
             {
-                SökKontakt(kontakter);
+                SearchContact(Contacts);
             }
             else if (Val == "4")
             {
-                TaBortKontakt(kontakter, raderadeKontakter);
+                ListContacts(Contacts);
             }
             else if (Val == "5")
             {
                 Environment.Exit(0);
             }
         }
+        
         // MenyVal
-        static void LäggTillKontakt(List<Contact> nyKontakt)
+        static void AddContact(List<Contact> nyKontakt)
         {
             Console.WriteLine("\nFörnamn: ");
             string firstNameInput = Console.ReadLine();
@@ -76,7 +77,7 @@ class Program()
             }
         }
 
-        static void ListaKontakter(List<Contact> nyKontakt)
+        static void ListContacts(List<Contact> nyKontakt)
         {
             Utskrift(nyKontakt);
             Console.ReadLine();
@@ -87,7 +88,7 @@ class Program()
             }
         }
 
-        static void SökKontakt(List<Contact> nyKontakt)
+        static void SearchContact(List<Contact> nyKontakt)
         {
             Console.WriteLine("\nSök efter Namn eller Nummer: ");
             string sökOrd = Console.ReadLine();
@@ -116,7 +117,7 @@ class Program()
             }
         }
 
-        static void TaBortKontakt(List<Contact> kontakter, List<string> raderadeKontakter)
+        static void RemoveContact(List<Contact> kontakter, List<string> raderadeKontakter)
         {
             Console.WriteLine("\nSkriv in hela namnet på kontakten som ska tas bort: \n");
             string raderaNamn = Console.ReadLine();
