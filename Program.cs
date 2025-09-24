@@ -1,4 +1,5 @@
-﻿class Program()
+﻿using Adressbok.Logic;
+class Program()
 {
     static List<string> raderadeKontakter = [];
 

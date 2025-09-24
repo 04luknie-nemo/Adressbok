@@ -1,3 +1,5 @@
+namespace Adressbok.Logic;
+
 public class Contact : Entity
 {
     private string firstName;
