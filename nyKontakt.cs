@@ -1,6 +1,9 @@
 public class Contact : Entity
 {
     private string firstName;
+    private string lastName;
+    private string nummer;
+    public bool isFavorite { get; set; }
 
     public string FirstName
     {
@@ -15,8 +18,18 @@ public class Contact : Entity
 
         }
     }
-    public string LastName { get; set; }
-    private string nummer;
+    public string LastName
+    {
+        get
+        {
+            return lastName;
+        }
+        set
+        {
+            lastName = value;
+            SetUpdatedAt();
+        }
+    }
 
     public string Nummer
     {
@@ -37,8 +50,6 @@ public class Contact : Entity
             return $"{FirstName} {LastName}";
         }
     }
-    public bool isFavorite { get; set; }
-
     public Contact(string firstName, string lastName, string nummer)
     {
         FirstName = firstName;
