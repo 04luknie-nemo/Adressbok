@@ -1,6 +1,4 @@
-﻿using System.Runtime.Intrinsics.Arm;
-
-class Program()
+﻿class Program()
 {
     static List<string> raderadeKontakter = [];
 
