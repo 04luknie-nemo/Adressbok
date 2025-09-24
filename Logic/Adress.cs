@@ -1,4 +1,4 @@
-using Adressbok.Logic;
+namespace Adressbok.Logic;
 
 class Adress : Entity
 {
@@ -15,5 +15,13 @@ class Adress : Entity
             adress = value;
             SetUpdatedAt();
         }
+    }
+    public Adress(string adress)
+    {
+        AdressTillPerson = adress;
+    }
+    public override string ToString()
+    {
+        return $"Adress: {AdressTillPerson}";
     }
 }

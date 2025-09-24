@@ -1,12 +1,11 @@
-﻿using System;
-using Adressbok.Logic;
+﻿using Adressbok.Logic;
 class Program()
 {
     static List<string> raderadeKontakter = [];
     static void Main()
     {
         List<Contact> kontakter = new List<Contact>();
-
+    
         while (true)
         {
             Console.WriteLine("\nAdressBok");
@@ -41,7 +40,7 @@ class Program()
                 Environment.Exit(0);
             }
         }
-
+        // MenyVal
         static void LäggTillKontakt(List<Contact> nyKontakt)
         {
             Console.WriteLine("\nFörnamn: ");
@@ -57,10 +56,9 @@ class Program()
             string adress = Console.ReadLine();
 
             Adress minAdress = new Adress(adress);
-            minAdress.AdressTillPerson = "";
+            minAdress.AdressTillPerson = adress;
 
-
-            Contact kontakt = new Contact(firstNameInput, lastNameInput, nummerInput, adress);
+            Contact kontakt = new Contact(firstNameInput, lastNameInput, nummerInput, minAdress);
 
             nyKontakt.Add(kontakt);
 
@@ -81,13 +79,6 @@ class Program()
         static void ListaKontakter(List<Contact> nyKontakt)
         {
             Utskrift(nyKontakt);
-
-            UppdateraNamn(nyKontakt);
-
-            UppdateraNummer(nyKontakt);
-
-            TaBortFavorit(nyKontakt);
-
             Console.ReadLine();
 
             if (nyKontakt.Count == 0)
@@ -145,6 +136,8 @@ class Program()
             }
         }
 
+
+        // Icke MenyVal
         static void UppdateraNamn(List<Contact> nyKontakt)
         {
             Console.WriteLine("Vill du uppdatera ett namn? ja/nej");
@@ -259,6 +252,27 @@ class Program()
             {
                 Console.WriteLine(nyKontakt[i]);
                 Console.WriteLine("-----------------------------------");
+            }
+
+            ChangeToContacts(nyKontakt);
+        }
+
+        static void ChangeToContacts(List<Contact> nyKontakt)
+        {
+            System.Console.WriteLine("Vill du göra någon ändring? ja/nej");
+            string change = Console.ReadLine();
+
+            if (change == "ja")
+            {
+                UppdateraNamn(nyKontakt);
+
+                UppdateraNummer(nyKontakt);
+
+                TaBortFavorit(nyKontakt);
+            }
+            else
+            {
+                System.Console.WriteLine("Okej :D");
             }
         }
 

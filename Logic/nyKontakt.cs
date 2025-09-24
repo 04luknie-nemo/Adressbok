@@ -7,6 +7,7 @@ class Contact : Entity
     private string nummer;
     public bool IsFavorite { get; set; }
 
+    public Adress AdressTillPerson { get; set; }
     public string FirstName
     {
         get { return firstName; }
@@ -49,15 +50,16 @@ class Contact : Entity
             return $"{FirstName} {LastName}";
         }
     }
-    public Contact(string firstName, string lastName, string nummer, string adress)
+    public Contact(string firstName, string lastName, string nummer, Adress adress)
     {
         FirstName = firstName;
         LastName = lastName;
         Nummer = nummer;
+        AdressTillPerson = adress;
     }
 
     public override string ToString()
     {
-        return $"ID: {Id} \nNamn: {FullName} \nTelefonnummer: {Nummer} \nSkapad: {CreatedAt} \nUppdaterad: {UpdateAt} \nFavorit: {IsFavorite} \nAdress: {AdressTillPerson}";
+        return $"ID: {Id} \nNamn: {FullName} \nTelefonnummer: {Nummer} \nSkapad: {CreatedAt} \nUppdaterad: {UpdateAt} \nFavorit: {IsFavorite} \n{AdressTillPerson}";
     }
 }
