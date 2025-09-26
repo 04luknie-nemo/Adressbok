@@ -9,8 +9,7 @@ class NameHandler : Entity
 
     public NameHandler()
     {
-        First = firstName;
-        Last = lastName;
+        // Tom konstruktor - properties sätts via Person-konstruktorn
     }
     public string First
     {

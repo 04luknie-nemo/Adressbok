@@ -20,7 +20,7 @@ class Person : Entity
     }
     public override string ToString()
     {
-        return $"ID: {Id} \nNamn: {Name} \nTelefonnummer: {Phone} \nSkapad: {CreatedAt} \nUppdaterad: {UpdateAt} \nFavorit: {IsFavorite} \n{AdressTillPerson} \n{birthYear}";
+        return $"ID: {Id} \nNamn: {Name} \nTelefonnummer: {Phone} \nSkapad: {CreatedAt} \nUppdaterad: {UpdateAt} \nFavorit: {IsFavorite} \n{AdressTillPerson} \nFödelsedatum {birthYear}";
     }
 
 }

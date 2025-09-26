@@ -1,6 +1,4 @@
-﻿using System.Net;
-using System.Security.Cryptography.X509Certificates;
-using Adressbok.Logic;
+﻿using Adressbok.Logic;
 class Program()
 {
     static List<string> deletedPersons = [];
@@ -62,7 +60,6 @@ class Program()
             string birthYearInput = Console.ReadLine();
 
             Adress minAdress = new Adress(adress);
-            minAdress.AdressTillPerson = adress;
 
             Person kontakt = new Person(firstNameInput, lastNameInput);
 
@@ -103,7 +100,7 @@ class Program()
                     Console.WriteLine("-----------------------------------");
                 }
 
-                ChangeToPersons(nyKontakt);
+                ChangesToPersons(nyKontakt);
             }
         }
 
@@ -146,14 +143,11 @@ class Program()
                 if (kontakter[i].Name.Full == raderaNamn)
                 {
                     kontakter.RemoveAt(i);
-
                     Console.WriteLine("Kontakten togs bort");
-                }
-                else
-                {
-                    Console.WriteLine("kontakten finns inte");
+                    return; // Stoppa efter borttagning
                 }
             }
+            Console.WriteLine("Kontakten finns inte");
         }
 
 
@@ -263,7 +257,7 @@ class Program()
             }
         }
 
-        static void ChangeToPersons(List<Person> nyKontakt)
+        static void ChangesToPersons(List<Person> nyKontakt)
         {
             System.Console.WriteLine("Vill du göra någon ändring? ja/nej");
             string change = Console.ReadLine();
